@@ -10,10 +10,12 @@ class ContractController extends Controller
 
 
     function page(Request $request){
-        return view('pages.contract');
+        $seo = DB::table('_seo_properties')->where('pageName','=','contact')->first();
+        return view('pages.contract',['seo'=>$seo]);
     }
 
     function contractRequest(Request $request){
+//        sleep(5);
         return DB::table('contracts')->insert($request->input());
     }
 
